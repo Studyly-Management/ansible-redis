@@ -8,7 +8,7 @@
     ignoreerrors: yes
   when:
     - redis_travis_ci is not defined
-    - redis_inside_container is not defined
+    - not redis_inside_container
 
 - name: compile redis
   shell: umask 0022 && make -j{{ ansible_processor_cores|default(1) + 1 }}{{ ' 32bit' if redis_make_32bit|bool else '' }}
